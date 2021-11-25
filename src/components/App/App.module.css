@@ -1,0 +1,23 @@
+.appContainer {
+    display: grid;
+    grid-template-areas: "sidebar content";
+    grid-template-columns: 2fr 10fr;
+
+    margin: 10vh auto;
+    height: 80vh;
+    width: 70%;
+
+    background-color: #1d1d2a;
+
+    border: 7px solid #181824;
+    border-radius: 30px;
+}
+
+.sidebarContainer {
+    grid-area: sidebar;
+}
+
+.contentContainer {
+    grid-area: content;
+
+}
