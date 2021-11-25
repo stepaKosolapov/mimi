@@ -2,10 +2,11 @@
     display: grid;
     grid-template-areas: "sidebar content";
     grid-template-columns: 2fr 10fr;
+    grid-gap: 5px;
 
-    margin: 10vh auto;
-    height: 80vh;
-    width: 70%;
+    margin: 2vh auto;
+    height: 96vh;
+    width: 80%;
 
     background-color: #1d1d2a;
 

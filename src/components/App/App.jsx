@@ -1,6 +1,8 @@
+import {createGlobalStyle} from "styled-components";
+import {Route, Routes} from "react-router-dom";
+import Messages from "components/Messages/Messages";
 import styles from './App.module.css';
 import Sidebar from "components/Sidebar/Sidebar";
-import {createGlobalStyle} from "styled-components";
 
 const themeColors = [
     '#1d1d2a', // 0 main background
@@ -30,6 +32,9 @@ const App = () => {
                 <Sidebar/>
             </div>
             <div className={styles.contentContainer}>
+                <Routes>
+                    <Route path='/message' element={<Messages/>}/>
+                </Routes>
             </div>
         </div>
     </>
