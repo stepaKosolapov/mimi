@@ -2,6 +2,7 @@ import Dialogs from "./Dialogs";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {getCurrentMessages, getDialogsInfo} from "state/selectors/dialogs-selectors";
+import {getMessages} from "state/reducers/dialogs-reducer";
 
 const DialogsContainer = (props) => {
     console.log(props);
@@ -14,5 +15,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {})
+    connect(mapStateToProps, {getMessages})
 )(DialogsContainer);

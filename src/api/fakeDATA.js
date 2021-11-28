@@ -4,10 +4,11 @@ const HardProcessing = (delay) => {
     })
 }
 
-const makeResponse = (data, error) => {
+const makeResponse = (data, error, resultCode) => {
     return {
         "data": [...data],
-        "error": error
+        "error": error,
+        "resultCode": resultCode,
     };
 }
 
@@ -15,10 +16,12 @@ export const getMessage = async (id) => {
     await HardProcessing(100);
     let data = messages[id];
     let error = null;
+    let resultCode = 0;
     if (!data) {
         error = "Messages not found!";
+        resultCode = 1;
     }
-    return makeResponse(data, error);
+    return makeResponse(data, error, resultCode);
 }
 
 const messages = {

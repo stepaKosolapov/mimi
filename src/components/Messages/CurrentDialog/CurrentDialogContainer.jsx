@@ -7,4 +7,4 @@ const CurrentDialogContainer = () => {
     </>
 }
 
-export default CurrentDialogContainer
+export default CurrentDialogContainer;

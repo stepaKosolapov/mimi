@@ -1,6 +1,4 @@
-const SET_CURRENT_MESSAGES = 'mimi/dialogs/setCurrentMessages';
-
-const setCurrentMessages = (messages) => ({type: SET_CURRENT_MESSAGES, messages});
+import {dialogsAPI} from "../../api/api";
 
 const initialState = {
     currentMessages: [],
@@ -53,12 +51,27 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_CURRENT_MESSAGES: {
             return {
                 ...state,
-                currentMessages: [...action.messages]
+                currentMessages: action.messages
             }
         }
         default:
             return state;
     }
 }
+
+const SET_CURRENT_MESSAGES = 'mimi/dialogs/setCurrentMessages';
+
+// actions
+const setCurrentMessages = (messages) => ({type: SET_CURRENT_MESSAGES, messages});
+
+// thunks
+export const getMessages = (id) => async (dispatch) => {
+    const response  = await dialogsAPI.getUserMessages(id);
+    if (!response.resultCode) {
+        dispatch(setCurrentMessages(response.data));
+    }
+}
+
+
 
 export default dialogsReducer;
