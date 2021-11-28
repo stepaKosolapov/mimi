@@ -11,6 +11,7 @@ const themeColors = [
     '#2f3142', // 3 sections background
     'orangered', // 4 contrast elements
     'whitesmoke', // 5 light elements
+    '#3F4052', // 6 soft elements background
 ]
 
 const ThemeVariables = createGlobalStyle`
@@ -21,6 +22,7 @@ const ThemeVariables = createGlobalStyle`
     --color3: ${(props) => props.colors[3]};
     --color4: ${(props) => props.colors[4]};
     --color5: ${(props) => props.colors[5]};
+    --color6: ${(props) => props.colors[6]};
   }
 `
 
@@ -33,7 +35,7 @@ const App = () => {
             </div>
             <div className={styles.contentContainer}>
                 <Routes>
-                    <Route path='/message' element={<Messages/>}/>
+                    <Route path='/message/*' element={<Messages/>}/>
                 </Routes>
             </div>
         </div>

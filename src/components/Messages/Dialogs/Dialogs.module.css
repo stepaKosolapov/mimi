@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 5px 10px 20px;
+
+    height: 100%;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+
+}
+
+.title {
+    margin: 0;
+    color: var(--color5);
+    font-size: 25px;
+}
+
+.addDialog {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    cursor: pointer;
+
+    border: none;
+
+    padding: 0 2px 0 10px;
+
+    background-color: var(--color6);
+    border-radius: 13px;
+
+    color: var(--color5);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+
+}
+
+.addIcon {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+}
+
+.dialogList {
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding-right: 5px;
+    max-height: 500px;
+}

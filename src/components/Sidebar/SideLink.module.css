@@ -15,7 +15,7 @@ a {
 
 .active > .body {
     background-color: var(--color4);
-    box-shadow: 0 10px 30px -15px var(--color4);
+    box-shadow: 0 10px 40px -13px var(--color4);
 }
 
 .icon{

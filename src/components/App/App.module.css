@@ -1,3 +1,12 @@
+@font-face {
+    font-family: Xolonium;
+    src: url('assets/fonts/Xolonium/Xolonium-Bold.otf');
+}
+
+* {
+    font-family: Montserrat;
+}
+
 .appContainer {
     display: grid;
     grid-template-areas: "sidebar content";
@@ -5,7 +14,10 @@
     grid-gap: 5px;
 
     margin: 2vh auto;
-    height: 96vh;
+    --app-height: 96vh;
+    height: var(--app-height);
+    max-height: var(--app-height);
+    overflow: hidden;
     width: 80%;
 
     background-color: #1d1d2a;
@@ -15,10 +27,11 @@
 }
 
 .sidebarContainer {
+    overflow: hidden;
     grid-area: sidebar;
 }
 
 .contentContainer {
+    overflow: hidden;
     grid-area: content;
-
 }
