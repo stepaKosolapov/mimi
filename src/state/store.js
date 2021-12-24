@@ -3,9 +3,10 @@ import dialogsReducer from "./reducers/dialogs-reducer";
 import ThunkMiddleware from "redux-thunk";
 
 const reducers = combineReducers({
-    dialogs: dialogsReducer
+    dialogs: dialogsReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(ThunkMiddleware));
+window.store = store;
 
 export default store;

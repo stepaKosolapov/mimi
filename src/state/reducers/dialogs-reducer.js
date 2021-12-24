@@ -1,47 +1,25 @@
-import {dialogsAPI} from "../../api/api";
+import {dialogsAPI} from "api/api";
 
 const initialState = {
-    currentMessages: [],
-    dialogsInfo: [
+    currentDialog: {
+        messages: null,
+        dialogInfo: null,
+    },
+    dialogs: [
         {
-            avatarSrc: 'http://pngimg.com/uploads/shrek/shrek_PNG6.png',
-            name: 'Shrэk',
-            dialogId: 1,
-            lastMessageText: 'Hello, shrek!)',
-            lastMessageTime: '9:10',
-            unreadMessagesCount: 0
-        },
-        {
-            avatarSrc: 'https://pngimg.com/uploads/shrek/shrek_PNG42.png',
-            name: 'Princess Fiona',
-            dialogId: 2,
-            lastMessageText: 'I\'m fiona.',
-            lastMessageTime: '10:10',
-            unreadMessagesCount: 1
-        },
-        {
-            avatarSrc: 'https://sun1-85.userapi.com/impg/qbwckFMjH4dYRKcr08cIGo6BK-STM-kIBgLC1g/-S_FyDrELLg.jpg?size=1175x1175&quality=96&sign=2a392844ae2b860318b8760ab32ecae7&type=album',
-            name: 'James P. Sullivan',
-            dialogId: 3,
-            lastMessageText: `Mike, you're not scary, not even a little, but you are fearless!`,
-            lastMessageTime: '11:11',
-            unreadMessagesCount: 0
-        },
-        {
-            avatarSrc: 'https://sun9-75.userapi.com/impg/WYmQl8lJAEy9Pc_8MTKECho0VuilK3tfLTW39A/QGvOxCw4xIU.jpg?size=610x613&quality=96&sign=0958c5f88287845f4383b5ae15eba2c4&type=album',
-            name: 'Donkey',
-            dialogId: 4,
-            lastMessageText: 'Hee-haw! Hee-haw!',
-            lastMessageTime: '12:05',
-            unreadMessagesCount: 10
-        },
-        {
-            avatarSrc: 'https://sun9-37.userapi.com/impg/XkFi8AueSP4BnYJ4oif12_YrFrZ4dhkR-XM27A/_Kr4izrxsaE.jpg?size=213x220&quality=96&sign=b61006c8073fb65bd899eb33bb183749&type=album',
-            name: 'Mike Wazowski',
-            dialogId: 5,
-            lastMessageText: `You were right. They weren't scared of me. I did everything right. I wanted it more than anyone. And I thought... I thought if I wanted it enough, I could show everybody that... That Mike Wazowski is something special. And I'm just not.`,
-            lastMessageTime: '12:55',
-            unreadMessagesCount: 1
+            id: 1,
+            person: {
+                id: 2,
+                username: "kate",
+                image_src: "",
+                status: ""
+            },
+            lastMessage: {
+                id: 1,
+                sender: 1,
+                body: "hello, Kate!",
+                created: "2021-12-06T04:09:01.950551+03:00"
+            }
         },
     ]
 }
@@ -51,7 +29,26 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_CURRENT_MESSAGES: {
             return {
                 ...state,
-                currentMessages: action.messages
+                currentDialog: {
+                    ...state.currentDialog,
+                    messages: action.messages,
+                }
+            }
+        }
+        case SET_CURRENT_DIALOG_INFO: {
+            console.log(state.dialogs.filter(dialog => +dialog.person.id === +action.personId).pop())
+            return {
+                ...state,
+                currentDialog: {
+                    ...state.currentDialog,
+                    dialogInfo: state.dialogs.filter(dialog => +dialog.person.id === +action.personId).pop()
+                }
+            }
+        }
+        case SET_DIALOGS: {
+            return {
+                ...state,
+                dialogs: action.dialogs
             }
         }
         default:
@@ -60,18 +57,37 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 const SET_CURRENT_MESSAGES = 'mimi/dialogs/setCurrentMessages';
+const SET_CURRENT_DIALOG_INFO = 'mimi/dialogs/setCurrentDialogInfo';
+const SET_DIALOGS = 'mimi/dialogs/setDialogs';
 
 // actions
 const setCurrentMessages = (messages) => ({type: SET_CURRENT_MESSAGES, messages});
+const setCurrentDialogInfo = (personId) => ({type: SET_CURRENT_DIALOG_INFO, personId});
+const setDialogs = (dialogs) => ({type: SET_DIALOGS, dialogs});
 
 // thunks
-export const getMessages = (id) => async (dispatch) => {
-    const response  = await dialogsAPI.getUserMessages(id);
-    if (!response.resultCode) {
-        dispatch(setCurrentMessages(response.data));
+const getMessages = (personId) => async (dispatch) => {
+    const data = await dialogsAPI.getUserMessages(personId);
+    if (data) {
+        dispatch(setCurrentMessages(data));
     }
 }
-
+export const sendMessage = (id, messageBody) => async (dispatch) => {
+    let response = await dialogsAPI.sendMessage(id, messageBody);
+    console.log(response);
+    dispatch(getMessages(id));
+}
+export const getDialogs = () => async (dispatch) => {
+    const data = await dialogsAPI.getDialogs();
+    if (data) {
+        dispatch(setDialogs(data));
+    }
+}
+export const getCurrentDialog = (personId) => async (dispatch) => {
+    await dispatch(getDialogs())
+    await dispatch(getMessages(personId));
+    await dispatch(setCurrentDialogInfo(personId))
+}
 
 
 export default dialogsReducer;

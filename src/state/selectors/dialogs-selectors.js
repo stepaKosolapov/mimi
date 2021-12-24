@@ -1,7 +1,7 @@
-export const getCurrentMessages = (state) => {
-    return state.dialogs.currentMessages;
+export const selectCurrentDialog = (state) => {
+    return state.dialogs.currentDialog;
 }
 
-export const getDialogsInfo = (state) => {
-    return state.dialogs.dialogsInfo;
+export const selectDialogs = (state) => {
+    return state.dialogs.dialogs;
 }

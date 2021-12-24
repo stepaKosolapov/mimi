@@ -1,19 +1,16 @@
 import Dialogs from "./Dialogs";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {getCurrentMessages, getDialogsInfo} from "state/selectors/dialogs-selectors";
-import {getMessages} from "state/reducers/dialogs-reducer";
+import {selectDialogs} from "state/selectors/dialogs-selectors";
 
 const DialogsContainer = (props) => {
-    console.log(props);
-    return <Dialogs dialogsInfo={props.dialogsInfo}/>;
+    return <Dialogs dialogs={props.dialogs} hostId={1}/>;
 }
 
 const mapStateToProps = (state) => ({
-    currentMessages: getCurrentMessages(state),
-    dialogsInfo: getDialogsInfo(state)
+    dialogs: selectDialogs(state)
 })
 
 export default compose(
-    connect(mapStateToProps, {getMessages})
+    connect(mapStateToProps, {})
 )(DialogsContainer);

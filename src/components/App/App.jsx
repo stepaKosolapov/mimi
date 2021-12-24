@@ -3,13 +3,15 @@ import {Route, Routes} from "react-router-dom";
 import Messages from "components/Messages/Messages";
 import styles from './App.module.css';
 import Sidebar from "components/Sidebar/Sidebar";
+import {AuthProvider} from "../../context/AuthContext";
+import Login from "../Login/Login";
 
 const themeColors = [
     '#1d1d2a', // 0 main background
     '#181824', // 1 main border
     '#7d7b7f', // 2 text
     '#2f3142', // 3 sections background
-    'orangered', // 4 contrast elements
+    'red',//'orangered', // 4 contrast elements
     'whitesmoke', // 5 light elements
     '#3F4052', // 6 soft elements background
 ]
@@ -34,9 +36,16 @@ const App = () => {
                 <Sidebar/>
             </div>
             <div className={styles.contentContainer}>
-                <Routes>
-                    <Route path='/message/*' element={<Messages/>}/>
-                </Routes>
+                <AuthProvider>
+                    <Routes>
+                        <Route path='/'>
+                            <Route path='message/' element={<Messages/>}/>
+                            <Route path='message/:userId' element={<Messages/>}/>
+                            <Route path='login' element={<Login/>}/>
+                        </Route>
+                    
+                    </Routes>
+                </AuthProvider>
             </div>
         </div>
     </>

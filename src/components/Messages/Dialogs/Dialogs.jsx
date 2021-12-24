@@ -1,10 +1,10 @@
 import styles from './Dialogs.module.css';
 import SmartSVG from "components/common/SmartSVG/SmartSVG";
 import {ReactComponent as logo} from "assets/images/logo.svg";
-import DialogsItem from "./DialogsItem";
+import DialogListItem from "./DialogListItem";
 
 
-const Dialogs = ({authId, dialogsInfo}) => {
+const Dialogs = ({hostId, dialogs}) => {
     return <>
         <div className={styles.container}>
             <div className={styles.header}>
@@ -18,9 +18,12 @@ const Dialogs = ({authId, dialogsInfo}) => {
             </div>
             <div className={styles.dialogList}>
                 {
-                    dialogsInfo.map((dialogInfo, i, arr)=>{
-                        return <DialogsItem dialogInfo={dialogInfo}
-                                            isLastItem={i === arr.length-1}/>
+                    dialogs.map((dialog, i, arr)=>{
+                        return <DialogListItem key={dialog.id}
+                                               dialogInfo={dialog}
+                                               unreadMessagesCount={1}
+                                               isLastItem={i === arr.length-1}
+                                               hostId={hostId}/>
                     })
                 }
             </div>

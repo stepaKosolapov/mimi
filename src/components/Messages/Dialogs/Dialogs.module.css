@@ -58,3 +58,6 @@
     padding-right: 5px;
     max-height: 500px;
 }
+.dialogList::-webkit-scrollbar{
+    width: 0;
+}

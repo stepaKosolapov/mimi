@@ -1,0 +1,31 @@
+.messageRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px 0 0;
+}
+.messageRow.incoming {
+    justify-content: flex-start;
+}
+.container {
+    display: flex;
+    align-items: center;
+    min-height: 2em;
+    max-width: 50%;
+
+    padding: 15px 10px;
+
+    background-color: var(--color4);
+    box-shadow: 0 7px 50px -18px var(--color4);
+    border-radius: 13px;
+
+}
+.incoming > .container {
+    background-color: var(--color6);
+    box-shadow: none;
+}
+.body {
+    color: var(--color5);
+    font-weight: bolder;
+    font-size: .8em;
+}

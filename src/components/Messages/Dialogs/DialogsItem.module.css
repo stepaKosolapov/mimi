@@ -17,6 +17,7 @@
     transition: background-color ease 0.2s;
 
     background-color: var(--color4);
+    box-shadow: 0 7px 50px -30px var(--color4);
     border-radius: 13px;
 }
 

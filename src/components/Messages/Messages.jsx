@@ -1,6 +1,7 @@
 import styles from "./Messages.module.css";
 import DialogsContainer from "./Dialogs/DialogsContainer";
-// import CurrentDialog from "./CurrentDialog/CurrentDialog";
+import CurrentDialogContainer from "./CurrentDialog/CurrentDialogContainer";
+import withAuthRequired from "components/hoc/withAuthRequired";
 
 const Messages = () => {
     return <>
@@ -11,10 +12,10 @@ const Messages = () => {
                 <DialogsContainer/>
             </div>
             <div className={styles.currentDialog}>
-                {/*<CurrentDialog/>*/}
+                <CurrentDialogContainer/>
             </div>
         </div>
     </>
 }
 
-export default Messages;
+export default withAuthRequired(Messages);
