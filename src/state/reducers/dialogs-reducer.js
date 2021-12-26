@@ -5,23 +5,8 @@ const initialState = {
         messages: null,
         dialogInfo: null,
     },
-    dialogs: [
-        {
-            id: 1,
-            person: {
-                id: 2,
-                username: "kate",
-                image_src: "",
-                status: ""
-            },
-            lastMessage: {
-                id: 1,
-                sender: 1,
-                body: "hello, Kate!",
-                created: "2021-12-06T04:09:01.950551+03:00"
-            }
-        },
-    ]
+    dialogs: []
+    
 }
 
 const dialogsReducer = (state = initialState, action) => {

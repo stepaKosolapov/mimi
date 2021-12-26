@@ -1,13 +1,15 @@
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {selectCurrentDialog} from "state/selectors/dialogs-selectors";
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import CurrentDialog from "./CurrentDialog";
 import {getCurrentDialog, sendMessage} from "state/reducers/dialogs-reducer";
+import AuthContext from "context/AuthContext";
 
 const CurrentDialogContainer = ({currentDialog:{messages, dialogInfo}, getCurrentDialog, sendMessage, ...props}) => {
     let {userId} = useParams();
+    let {user:{user_id:hostId}} = useContext(AuthContext);
     useEffect(()=>{
         getCurrentDialog(userId);
     }, [getCurrentDialog, userId]);
@@ -21,7 +23,7 @@ const CurrentDialogContainer = ({currentDialog:{messages, dialogInfo}, getCurren
             dialogInfo={dialogInfo}
             messages={messages}
             sendMessage={handleSendMessage}
-            hostId={1}/>
+            hostId={hostId}/>
 }
 
 const mapStateToProps = (state) => ({

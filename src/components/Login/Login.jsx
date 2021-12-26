@@ -7,16 +7,16 @@ import SmartSVG from "../common/SmartSVG/SmartSVG";
 
 const Login = () => {
     const {register, handleSubmit} = useForm();
-    const {loginUser} = useContext(AuthContext);
+    const {loginUser, user} = useContext(AuthContext);
     const onSubmit = (values) => {
         loginUser(values.username, values.password)
             .then(resp=>console.log(resp));
     }
-    
     return <form onSubmit={handleSubmit((...args) => {
         onSubmit(...args);
     })}>
         <div className={styles.container}>
+            <h1>Login</h1>
             <div className={styles.usernameContainer}>
                 <input type="text" className={styles.username}
                           placeholder='Username'

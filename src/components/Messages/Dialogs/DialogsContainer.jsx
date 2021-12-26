@@ -2,9 +2,12 @@ import Dialogs from "./Dialogs";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {selectDialogs} from "state/selectors/dialogs-selectors";
+import {useContext} from "react";
+import AuthContext from "../../../context/AuthContext";
 
 const DialogsContainer = (props) => {
-    return <Dialogs dialogs={props.dialogs} hostId={1}/>;
+    const {user} = useContext(AuthContext);
+    return <Dialogs dialogs={props.dialogs} hostId={user.user_id}/>;
 }
 
 const mapStateToProps = (state) => ({
@@ -12,5 +15,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {})
+    connect(mapStateToProps, {}),
 )(DialogsContainer);

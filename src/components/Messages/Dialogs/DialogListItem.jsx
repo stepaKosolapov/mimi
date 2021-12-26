@@ -19,6 +19,7 @@ const DialogListItem = ({
                             unreadMessagesCount,
                             isLastItem,
                             hostId}) => {
+    console.log(lastMessageText);
     return <NavLink to={`/message/${personId}`} className={({isActive}) => isActive ? styles.active : ""}>
         <div className={styles.container}
              style={isLastItem ? {border: 'none'} : {}}>

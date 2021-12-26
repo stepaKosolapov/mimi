@@ -1,5 +1,6 @@
 * {
     font-family: Montserrat;
+    box-sizing: border-box;
 }
 
 .appContainer {
@@ -15,9 +16,9 @@
     overflow: hidden;
     width: 80%;
 
-    background-color: #1d1d2a;
+    background-color: var(--color0);
 
-    border: 7px solid #181824;
+    border: 7px solid var(--color1);
     border-radius: 30px;
 }
 

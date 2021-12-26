@@ -2,6 +2,7 @@ import styles from './Dialogs.module.css';
 import SmartSVG from "components/common/SmartSVG/SmartSVG";
 import {ReactComponent as logo} from "assets/images/logo.svg";
 import DialogListItem from "./DialogListItem";
+import {memo} from "react";
 
 
 const Dialogs = ({hostId, dialogs}) => {
@@ -21,7 +22,7 @@ const Dialogs = ({hostId, dialogs}) => {
                     dialogs.map((dialog, i, arr)=>{
                         return <DialogListItem key={dialog.id}
                                                dialogInfo={dialog}
-                                               unreadMessagesCount={1}
+                                               unreadMessagesCount={0}
                                                isLastItem={i === arr.length-1}
                                                hostId={hostId}/>
                     })
@@ -31,4 +32,4 @@ const Dialogs = ({hostId, dialogs}) => {
     </>
 }
 
-export default Dialogs;
+export default memo(Dialogs);
