@@ -59,6 +59,7 @@
 }
 .submit svg {
     transition: ease 1s;
+    height: 4em;
 }
 .submit:hover svg {
     transform: rotate(120deg);

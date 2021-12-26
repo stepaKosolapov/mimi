@@ -1,11 +1,12 @@
 .container {
     display: grid;
     grid-template-areas:
-            "utils utils"
+            "dialogs utils"
             "dialogs currentDialog";
     grid-template-columns: 5fr 7fr;
     grid-template-rows: 1fr 11fr;
     grid-column-gap: 20px;
+    grid-row-gap: 10px;
 
     height: 100%;
 
@@ -14,6 +15,8 @@
 
 .utils {
     grid-area: utils;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .dialogs {

@@ -3,7 +3,7 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {selectDialogs} from "state/selectors/dialogs-selectors";
 import {useContext} from "react";
-import AuthContext from "../../../context/AuthContext";
+import AuthContext from "context/AuthContext";
 
 const DialogsContainer = (props) => {
     const {user} = useContext(AuthContext);

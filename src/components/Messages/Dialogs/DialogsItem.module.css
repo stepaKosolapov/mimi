@@ -66,6 +66,7 @@
     grid-area: message;
 
     font-size: 1.4em;
+    font-weight: 700;
     color: var(--color2);
 }
 .unreadMessagesContainer {

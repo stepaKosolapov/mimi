@@ -21,7 +21,6 @@ const dialogsReducer = (state = initialState, action) => {
             }
         }
         case SET_CURRENT_DIALOG_INFO: {
-            console.log(state.dialogs.filter(dialog => +dialog.person.id === +action.personId).pop())
             return {
                 ...state,
                 currentDialog: {

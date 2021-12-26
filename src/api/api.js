@@ -1,5 +1,4 @@
 import axios from "axios";
-import AuthContext from "../context/AuthContext";
 
 
 const instance = axios
@@ -24,7 +23,7 @@ export const dialogsAPI = {
                 .get(`messages/${id}/`)
                 .then(response => response.data);
         } catch (e) {
-            console.log(e);
+            // console.log(e.response);
         }
     },
     async getDialogs() {
@@ -33,14 +32,14 @@ export const dialogsAPI = {
                 .get(`dialogs/`)
                 .then(response => response.data);
         } catch (e) {
-            console.log(e);
+            // console.log(e.response);
         }
     },
     async sendMessage(id, messageBody) {
         try {
             return await instance.post(`messages/${id}/`, {body: messageBody});
         } catch (e) {
-            console.log(e);
+            // console.log(e.response);
         }
     }
 }
@@ -49,17 +48,19 @@ export const authAPI = {
     async loginUser(username, password) {
         try {
             return await instance
-                .post(`token/`, {username, password});
+                .post(`token/`, {username, password})
+                .then(r=>r, e=>e.response);
         } catch (e) {
-            console.log(e);
+            // console.log(e.response);
         }
     },
     async refreshToken(refresh) {
         try {
             return await instance
-                .post(`token/refresh/`, {refresh});
+                .post(`token/refresh/`, {refresh})
+                .then(r=>r, e=>e.response);
         } catch (e) {
-            console.log(e);
+            // console.log(e.response);
         }
     }
     

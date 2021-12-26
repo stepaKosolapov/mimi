@@ -10,7 +10,6 @@ export default AuthContext;
 export const AuthProvider = ({children}) => {
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null);
     let [user, setUser] = useState(() => authTokens ? jwtDecode(authTokens.access) : null);
-    let [loading, setLoading] = useState(true);
     let navigate = useNavigate();
     
     // const login
@@ -30,19 +29,22 @@ export const AuthProvider = ({children}) => {
         localStorage.removeItem('authTokens');
     }
     
+    
     const refreshToken = async () => {
-        console.log("Update token called!")
+        if (!authTokens?.refresh) {
+            return;
+        }
+        
         let response = await authAPI.refreshToken(authTokens?.refresh);
         if (response?.status === 200) {
             setAuthTokens(response.data);
             setUser(jwtDecode(response.data.access));
             localStorage.setItem('authTokens', JSON.stringify(response.data));
-        } else {
+        } else if(response?.status === 401) {
             console.log('Failed', response)
             logoutUser();
-        }
-        if (loading) {
-            setLoading(false);
+        } else{
+            console.log('response:', response)
         }
     }
     
@@ -51,22 +53,21 @@ export const AuthProvider = ({children}) => {
         logoutUser,
         user
     }
-    
+    useEffect(()=>{
+        refreshToken()
+    },[]);
     useEffect(() => {
-        if (loading) {
-            refreshToken();
-        }
-        const fourMinutes = 60 * 4 * 1000;
+        const fourMinutes =   4 * 1000;
         let interval = setInterval(() => {
             if (authTokens) {
                 refreshToken();
             }
         }, fourMinutes);
         return () => clearInterval(interval);
-    }, [authTokens, loading]);
+    }, [refreshToken, authTokens]);
     return (
         <AuthContext.Provider value={contextData}>
-            {loading ? null : children}
+            {children}
         </AuthContext.Provider>
     )
 }

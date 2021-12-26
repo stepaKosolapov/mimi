@@ -11,7 +11,7 @@ const themeColors = [
     '#181824', // 1 main border
     '#7d7b7f', // 2 text
     '#2f3142', // 3 sections background
-    'red',//'orangered', // 4 contrast elements
+    '#9704e0',//'red',//'orangered', // 4 contrast elements
     'whitesmoke', // 5 light elements
     '#3F4052', // 6 soft elements background
 ]
