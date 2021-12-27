@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--color1);
+}
+
 .appContainer {
     display: grid;
     grid-template-areas: "sidebar content";

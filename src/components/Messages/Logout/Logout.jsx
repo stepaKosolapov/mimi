@@ -8,11 +8,14 @@ const Logout = ({name, avatar_src}) => {
     let [isOpened, setIsOpened] = useState(false);
     let {logoutUser} = useContext(AuthContext);
     return <div className={styles.container}>
-        <img className={styles.avatar} src={avatar_src} alt="avatar"/>
+        <div className={styles.avatarContainer}>
+            <img src={avatar_src} alt="avatar"/></div>
         <div className={styles.name}>
             {name}
         </div>
-        <div className={styles.burger + ' ' + (isOpened ? styles.opened : '')} onClick={()=>{setIsOpened(!isOpened)}}>
+        <div className={styles.burger + ' ' + (isOpened ? styles.opened : '')} onClick={() => {
+            setIsOpened(!isOpened)
+        }}>
             <SmartSVG SvgComponent={burger} color={'var(--color2)'}/>
         </div>
         <div className={styles.dropdownContainer}>

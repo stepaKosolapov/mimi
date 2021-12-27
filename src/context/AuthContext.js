@@ -39,6 +39,7 @@ export const AuthProvider = ({children}) => {
         if (response?.status === 200) {
             setAuthTokens(response.data);
             setUser(jwtDecode(response.data.access));
+            console.log('updated user:', response.data.refresh)
             localStorage.setItem('authTokens', JSON.stringify(response.data));
         } else if(response?.status === 401) {
             console.log('Failed', response)
@@ -57,7 +58,7 @@ export const AuthProvider = ({children}) => {
         refreshToken()
     },[]);
     useEffect(() => {
-        const fourMinutes =   4 * 1000;
+        const fourMinutes =   60 * 4 * 1000;
         let interval = setInterval(() => {
             if (authTokens) {
                 refreshToken();

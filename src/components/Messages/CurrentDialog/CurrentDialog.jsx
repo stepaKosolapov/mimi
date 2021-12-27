@@ -6,10 +6,10 @@ import NewMessageForm from "./NewMessageForm/NewMessageForm";
 const CurrentDialog = ({
                            dialogInfo: {
                                person: {
+                                   id: personId,
                                    username: name,
                                    image_src: avatar,
                                },
-                               id: dialogId
                            },
                            messages,
                            sendMessage,
@@ -22,7 +22,7 @@ const CurrentDialog = ({
     }, [messages]);
     
     let onSubmit = (values) => {
-        sendMessage(dialogId, values.messageBody);
+        sendMessage(personId, values.messageBody);
     }
     
     return <div className={styles.container}>

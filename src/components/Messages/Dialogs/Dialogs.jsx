@@ -22,7 +22,7 @@ const Dialogs = ({hostId, dialogs}) => {
                     dialogs.map((dialog, i, arr)=>{
                         return <DialogListItem key={dialog.id}
                                                dialogInfo={dialog}
-                                               unreadMessagesCount={0}
+                                               unreadMessagesCount={i}
                                                isLastItem={i === arr.length-1}
                                                hostId={hostId}/>
                     })
